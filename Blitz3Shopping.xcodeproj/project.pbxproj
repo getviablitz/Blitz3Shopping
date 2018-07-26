@@ -31,6 +31,11 @@
 		27AEFB2121099E40003F1847 /* backarrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 27AEFB1321099E40003F1847 /* backarrow.png */; };
 		27AEFB2221099E40003F1847 /* google+.png in Resources */ = {isa = PBXBuildFile; fileRef = 27AEFB1421099E40003F1847 /* google+.png */; };
 		27AEFB2321099E40003F1847 /* fb11.png in Resources */ = {isa = PBXBuildFile; fileRef = 27AEFB1521099E40003F1847 /* fb11.png */; };
+		27AEFB3D2109BD50003F1847 /* Default-375w-667h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 27AEFB382109BD4F003F1847 /* Default-375w-667h@2x~iphone.png */; };
+		27AEFB3E2109BD50003F1847 /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 27AEFB392109BD4F003F1847 /* Default-568h@2x~iphone.png */; };
+		27AEFB3F2109BD50003F1847 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 27AEFB3A2109BD4F003F1847 /* 1.png */; };
+		27AEFB402109BD50003F1847 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 27AEFB3B2109BD50003F1847 /* Default.png */; };
+		27AEFB412109BD50003F1847 /* Default-414w-736h@3x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 27AEFB3C2109BD50003F1847 /* Default-414w-736h@3x~iphone.png */; };
 		ED662E0C32AA82A8B1860E85 /* Pods_Blitz3Shopping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 903F7AE13B6F0E244F7061C5 /* Pods_Blitz3Shopping.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +66,11 @@
 		27AEFB1321099E40003F1847 /* backarrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backarrow.png; sourceTree = "<group>"; };
 		27AEFB1421099E40003F1847 /* google+.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "google+.png"; sourceTree = "<group>"; };
 		27AEFB1521099E40003F1847 /* fb11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fb11.png; sourceTree = "<group>"; };
+		27AEFB382109BD4F003F1847 /* Default-375w-667h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-375w-667h@2x~iphone.png"; sourceTree = "<group>"; };
+		27AEFB392109BD4F003F1847 /* Default-568h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x~iphone.png"; sourceTree = "<group>"; };
+		27AEFB3A2109BD4F003F1847 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		27AEFB3B2109BD50003F1847 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		27AEFB3C2109BD50003F1847 /* Default-414w-736h@3x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-414w-736h@3x~iphone.png"; sourceTree = "<group>"; };
 		6568E9F8D980489FF068B4EE /* Pods-Blitz3Shopping.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Blitz3Shopping.release.xcconfig"; path = "Pods/Target Support Files/Pods-Blitz3Shopping/Pods-Blitz3Shopping.release.xcconfig"; sourceTree = "<group>"; };
 		903F7AE13B6F0E244F7061C5 /* Pods_Blitz3Shopping.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Blitz3Shopping.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB7A52DB7E34A5B3D9A1F769 /* Pods-Blitz3Shopping.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Blitz3Shopping.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Blitz3Shopping/Pods-Blitz3Shopping.debug.xcconfig"; sourceTree = "<group>"; };
@@ -156,6 +166,11 @@
 		27AEFB0721099E28003F1847 /* SplashScreens */ = {
 			isa = PBXGroup;
 			children = (
+				27AEFB3A2109BD4F003F1847 /* 1.png */,
+				27AEFB382109BD4F003F1847 /* Default-375w-667h@2x~iphone.png */,
+				27AEFB3C2109BD50003F1847 /* Default-414w-736h@3x~iphone.png */,
+				27AEFB392109BD4F003F1847 /* Default-568h@2x~iphone.png */,
+				27AEFB3B2109BD50003F1847 /* Default.png */,
 			);
 			path = SplashScreens;
 			sourceTree = "<group>";
@@ -241,15 +256,20 @@
 				27AEFB1F21099E40003F1847 /* go.png in Resources */,
 				27AEFB1A21099E40003F1847 /* uncheckpref.png in Resources */,
 				27AEFB1621099E40003F1847 /* tw11.png in Resources */,
+				27AEFB402109BD50003F1847 /* Default.png in Resources */,
 				27AEFB2021099E40003F1847 /* expand.png in Resources */,
 				27AEFB1D21099E40003F1847 /* linkin.png in Resources */,
+				27AEFB412109BD50003F1847 /* Default-414w-736h@3x~iphone.png in Resources */,
 				27AEFB2221099E40003F1847 /* google+.png in Resources */,
 				27AEFB1721099E40003F1847 /* quora.png in Resources */,
 				27AEFB1821099E40003F1847 /* menu.png in Resources */,
+				27AEFB3F2109BD50003F1847 /* 1.png in Resources */,
 				27AEFACC2109926D003F1847 /* LaunchScreen.storyboard in Resources */,
 				27AEFB1921099E40003F1847 /* checkpref.png in Resources */,
 				27AEFAC92109926D003F1847 /* Assets.xcassets in Resources */,
 				27AEFAC42109926D003F1847 /* Main.storyboard in Resources */,
+				27AEFB3E2109BD50003F1847 /* Default-568h@2x~iphone.png in Resources */,
+				27AEFB3D2109BD50003F1847 /* Default-375w-667h@2x~iphone.png in Resources */,
 				27AEFB1B21099E40003F1847 /* blitzViewClose.png in Resources */,
 				27AEFB2321099E40003F1847 /* fb11.png in Resources */,
 				27AEFB1C21099E40003F1847 /* inst11.png in Resources */,
@@ -429,6 +449,7 @@
 			baseConfigurationReference = DB7A52DB7E34A5B3D9A1F769 /* Pods-Blitz3Shopping.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9LAU2B9MZ6;
 				INFOPLIST_FILE = Blitz3Shopping/Info.plist;
@@ -446,6 +467,7 @@
 			baseConfigurationReference = 6568E9F8D980489FF068B4EE /* Pods-Blitz3Shopping.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9LAU2B9MZ6;
 				INFOPLIST_FILE = Blitz3Shopping/Info.plist;

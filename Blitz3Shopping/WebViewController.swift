@@ -91,6 +91,9 @@ class WebViewController: UIViewController, UIWebViewDelegate, lsmviewdelegate {
             }else if(UIDevice.current.orientation == UIDeviceOrientation.landscapeRight){
                 lsmViewControler.orientationLSMId = "left"
             }
+            if(DeviceType.IS_IPAD_MINI){
+                lsmViewControler.fromSubView = "rotation"
+            }
             lsmViewControler.fromView = "web"
             lsmViewControler.webToUrlString = self.containerView.stringByEvaluatingJavaScript(from: "window.location.href")!
             lsmViewControler.delegate = self

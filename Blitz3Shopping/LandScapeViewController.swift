@@ -45,15 +45,19 @@ class LandScapeViewController: UIViewController, UITableViewDelegate, UITableVie
     var tempList = ["Best-Buy", "Amazon", "Alibaba", "Walmart", "Costco", "NordStrom", "close"]
     var socialLinks = ["https://www.bestbuy.com", "https://www.amazon.com", "http://www.alibaba.com" , "https://www.walmart.com", "https://www.costco.com", "https://shop.nordstrom.com"]
     var fromView = ""
+    var fromSubView = ""
     var filterArray = [Int]()
     var webToUrlString = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let width = UIScreen.main.bounds.size.width
-        let height = UIScreen.main.bounds.size.height
-        
+        var width = UIScreen.main.bounds.size.width
+        var height = UIScreen.main.bounds.size.height
+        if(self.fromSubView == "rotation"){
+            width = UIScreen.main.bounds.size.height
+            height = UIScreen.main.bounds.size.width
+        }
         self.web1.frame = CGRect(x: height/3 * CGFloat(0), y: 40, width: height/3, height: width - 40)
         self.view.addSubview(self.web1)
         web1.scrollView.bounces = false
@@ -125,21 +129,23 @@ class LandScapeViewController: UIViewController, UITableViewDelegate, UITableVie
         feedRightHeaderView.addSubview(fullviewfeedright)
         
         self.automaticallyAdjustsScrollViewInsets = false
+        DispatchQueue.main.async(execute: {
+            if let url = URL(string: self.socialLinks[self.filterArray[0]]) {
+                let request = URLRequest(url: url)
+                self.web1.loadRequest(request)
+            }
+            // web2.delegate = self as! UIWebViewDelegate
+            if let url = URL(string: self.socialLinks[self.filterArray[1]]) {
+                let request = URLRequest(url: url)
+                self.web2.loadRequest(request)
+            }
+            //  web3.delegate = self as! UIWebViewDelegate
+            if let url = URL(string: self.socialLinks[self.filterArray[2]]) {
+                let request = URLRequest(url: url)
+                self.web3.loadRequest(request)
+            }
+        })
         
-        if let url = URL(string: socialLinks[filterArray[0]]) {
-            let request = URLRequest(url: url)
-            web1.loadRequest(request)
-        }
-        // web2.delegate = self as! UIWebViewDelegate
-        if let url = URL(string: socialLinks[filterArray[1]]) {
-            let request = URLRequest(url: url)
-            web2.loadRequest(request)
-        }
-        //  web3.delegate = self as! UIWebViewDelegate
-        if let url = URL(string: socialLinks[filterArray[2]]) {
-            let request = URLRequest(url: url)
-            web3.loadRequest(request)
-        }
         if(self.fromView == "web"){
             self.maskView.isHidden = false
             self.view.bringSubview(toFront: self.maskView)
@@ -328,7 +334,9 @@ class LandScapeViewController: UIViewController, UITableViewDelegate, UITableVie
             self.fullviewfeedmiddle.frame.origin.x = self.feedMiddleHeaderView.frame.size.width - 40
             self.fullviewfeedright.frame.origin.x = self.feedRightHeaderView.frame.size.width - 40
             
-            
+            self.leftListView.frame.origin.x = self.web1.frame.origin.x + CGFloat(3)
+            self.middleListView.frame.origin.x = self.web2.frame.origin.x + CGFloat(3)
+            self.rightListView.frame.origin.x = self.web3.frame.origin.x + CGFloat(3)
             
         }
         
