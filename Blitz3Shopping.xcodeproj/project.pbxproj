@@ -1,0 +1,394 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		27AEFABF2109926D003F1847 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27AEFABE2109926D003F1847 /* AppDelegate.swift */; };
+		27AEFAC12109926D003F1847 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27AEFAC02109926D003F1847 /* ViewController.swift */; };
+		27AEFAC42109926D003F1847 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27AEFAC22109926D003F1847 /* Main.storyboard */; };
+		27AEFAC72109926D003F1847 /* Blitz3Shopping.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 27AEFAC52109926D003F1847 /* Blitz3Shopping.xcdatamodeld */; };
+		27AEFAC92109926D003F1847 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27AEFAC82109926D003F1847 /* Assets.xcassets */; };
+		27AEFACC2109926D003F1847 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27AEFACA2109926D003F1847 /* LaunchScreen.storyboard */; };
+		ED662E0C32AA82A8B1860E85 /* Pods_Blitz3Shopping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 903F7AE13B6F0E244F7061C5 /* Pods_Blitz3Shopping.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		27AEFABB2109926D003F1847 /* Blitz3Shopping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blitz3Shopping.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		27AEFABE2109926D003F1847 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		27AEFAC02109926D003F1847 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		27AEFAC32109926D003F1847 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		27AEFAC62109926D003F1847 /* Blitz3Shopping.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Blitz3Shopping.xcdatamodel; sourceTree = "<group>"; };
+		27AEFAC82109926D003F1847 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		27AEFACB2109926D003F1847 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		27AEFACD2109926D003F1847 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6568E9F8D980489FF068B4EE /* Pods-Blitz3Shopping.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Blitz3Shopping.release.xcconfig"; path = "Pods/Target Support Files/Pods-Blitz3Shopping/Pods-Blitz3Shopping.release.xcconfig"; sourceTree = "<group>"; };
+		903F7AE13B6F0E244F7061C5 /* Pods_Blitz3Shopping.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Blitz3Shopping.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB7A52DB7E34A5B3D9A1F769 /* Pods-Blitz3Shopping.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Blitz3Shopping.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Blitz3Shopping/Pods-Blitz3Shopping.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		27AEFAB82109926D003F1847 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED662E0C32AA82A8B1860E85 /* Pods_Blitz3Shopping.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		27AEFAB22109926D003F1847 = {
+			isa = PBXGroup;
+			children = (
+				27AEFABD2109926D003F1847 /* Blitz3Shopping */,
+				27AEFABC2109926D003F1847 /* Products */,
+				52B4E4CE48447C30F6BF3638 /* Pods */,
+				9D768521BFF4B75BF18C13EA /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		27AEFABC2109926D003F1847 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				27AEFABB2109926D003F1847 /* Blitz3Shopping.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		27AEFABD2109926D003F1847 /* Blitz3Shopping */ = {
+			isa = PBXGroup;
+			children = (
+				27AEFABE2109926D003F1847 /* AppDelegate.swift */,
+				27AEFAC02109926D003F1847 /* ViewController.swift */,
+				27AEFAC22109926D003F1847 /* Main.storyboard */,
+				27AEFAC82109926D003F1847 /* Assets.xcassets */,
+				27AEFACA2109926D003F1847 /* LaunchScreen.storyboard */,
+				27AEFACD2109926D003F1847 /* Info.plist */,
+				27AEFAC52109926D003F1847 /* Blitz3Shopping.xcdatamodeld */,
+			);
+			path = Blitz3Shopping;
+			sourceTree = "<group>";
+		};
+		52B4E4CE48447C30F6BF3638 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DB7A52DB7E34A5B3D9A1F769 /* Pods-Blitz3Shopping.debug.xcconfig */,
+				6568E9F8D980489FF068B4EE /* Pods-Blitz3Shopping.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		9D768521BFF4B75BF18C13EA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				903F7AE13B6F0E244F7061C5 /* Pods_Blitz3Shopping.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		27AEFABA2109926D003F1847 /* Blitz3Shopping */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27AEFAD02109926D003F1847 /* Build configuration list for PBXNativeTarget "Blitz3Shopping" */;
+			buildPhases = (
+				1E112A79EF2C9C670B64F42C /* [CP] Check Pods Manifest.lock */,
+				27AEFAB72109926D003F1847 /* Sources */,
+				27AEFAB82109926D003F1847 /* Frameworks */,
+				27AEFAB92109926D003F1847 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Blitz3Shopping;
+			productName = Blitz3Shopping;
+			productReference = 27AEFABB2109926D003F1847 /* Blitz3Shopping.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		27AEFAB32109926D003F1847 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = BlitzIt;
+				TargetAttributes = {
+					27AEFABA2109926D003F1847 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 27AEFAB62109926D003F1847 /* Build configuration list for PBXProject "Blitz3Shopping" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 27AEFAB22109926D003F1847;
+			productRefGroup = 27AEFABC2109926D003F1847 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				27AEFABA2109926D003F1847 /* Blitz3Shopping */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		27AEFAB92109926D003F1847 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27AEFACC2109926D003F1847 /* LaunchScreen.storyboard in Resources */,
+				27AEFAC92109926D003F1847 /* Assets.xcassets in Resources */,
+				27AEFAC42109926D003F1847 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1E112A79EF2C9C670B64F42C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Blitz3Shopping-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		27AEFAB72109926D003F1847 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27AEFAC72109926D003F1847 /* Blitz3Shopping.xcdatamodeld in Sources */,
+				27AEFAC12109926D003F1847 /* ViewController.swift in Sources */,
+				27AEFABF2109926D003F1847 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		27AEFAC22109926D003F1847 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				27AEFAC32109926D003F1847 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		27AEFACA2109926D003F1847 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				27AEFACB2109926D003F1847 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		27AEFACE2109926D003F1847 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		27AEFACF2109926D003F1847 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		27AEFAD12109926D003F1847 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DB7A52DB7E34A5B3D9A1F769 /* Pods-Blitz3Shopping.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9LAU2B9MZ6;
+				INFOPLIST_FILE = Blitz3Shopping/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.veritagis.Blitz3Shopping;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		27AEFAD22109926D003F1847 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6568E9F8D980489FF068B4EE /* Pods-Blitz3Shopping.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9LAU2B9MZ6;
+				INFOPLIST_FILE = Blitz3Shopping/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.veritagis.Blitz3Shopping;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		27AEFAB62109926D003F1847 /* Build configuration list for PBXProject "Blitz3Shopping" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27AEFACE2109926D003F1847 /* Debug */,
+				27AEFACF2109926D003F1847 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27AEFAD02109926D003F1847 /* Build configuration list for PBXNativeTarget "Blitz3Shopping" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27AEFAD12109926D003F1847 /* Debug */,
+				27AEFAD22109926D003F1847 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		27AEFAC52109926D003F1847 /* Blitz3Shopping.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				27AEFAC62109926D003F1847 /* Blitz3Shopping.xcdatamodel */,
+			);
+			currentVersion = 27AEFAC62109926D003F1847 /* Blitz3Shopping.xcdatamodel */;
+			path = Blitz3Shopping.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 27AEFAB32109926D003F1847 /* Project object */;
+}
