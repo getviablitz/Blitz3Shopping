@@ -129,42 +129,22 @@ class LandScapeViewController: UIViewController, UITableViewDelegate, UITableVie
         feedRightHeaderView.addSubview(fullviewfeedright)
         
         self.automaticallyAdjustsScrollViewInsets = false
-        DispatchQueue.main.async(execute: {
-            if let url = URL(string: self.socialLinks[self.filterArray[0]]) {
-                let request = URLRequest(url: url)
-                self.web1.loadRequest(request)
-            }
-            // web2.delegate = self as! UIWebViewDelegate
-            if let url = URL(string: self.socialLinks[self.filterArray[1]]) {
-                let request = URLRequest(url: url)
-                self.web2.loadRequest(request)
-            }
-            //  web3.delegate = self as! UIWebViewDelegate
-            if let url = URL(string: self.socialLinks[self.filterArray[2]]) {
-                let request = URLRequest(url: url)
-                self.web3.loadRequest(request)
-            }
-        })
         
+        var urlString0 = self.socialLinks[self.filterArray[0]]
+        var urlString1 = self.socialLinks[self.filterArray[1]]
+        var urlString2 = self.socialLinks[self.filterArray[2]]
         if(self.fromView == "web"){
             self.maskView.isHidden = false
             self.view.bringSubview(toFront: self.maskView)
             let urlString = webToUrlString
             self.fullOverlayWebView.tag = webUrlString
+            
             if(webUrlString == 1){
-                if let url = URL(string: urlString) {
-                    let request = URLRequest(url: url)
-                    web1.loadRequest(request)                }
+                urlString0 = webToUrlString
             }else if(webUrlString == 2){
-                if let url = URL(string: urlString) {
-                    let request = URLRequest(url: url)
-                    web2.loadRequest(request)
-                }
+                urlString1 = webToUrlString
             }else if(webUrlString == 3){
-                if let url = URL(string: urlString) {
-                    let request = URLRequest(url: url)
-                    web3.loadRequest(request)
-                }
+                urlString2 = webToUrlString
             }
             DispatchQueue.main.async(execute: {
                 let requestURL = URL(string:urlString)
@@ -182,6 +162,23 @@ class LandScapeViewController: UIViewController, UITableViewDelegate, UITableVie
         }else{
             self.maskView.isHidden = true
         }
+        DispatchQueue.main.async(execute: {
+            if let url = URL(string: urlString0) {
+                let request = URLRequest(url: url)
+                self.web1.loadRequest(request)
+            }
+            // web2.delegate = self as! UIWebViewDelegate
+            if let url = URL(string: urlString1) {
+                let request = URLRequest(url: url)
+                self.web2.loadRequest(request)
+            }
+            //  web3.delegate = self as! UIWebViewDelegate
+            if let url = URL(string: urlString2) {
+                let request = URLRequest(url: url)
+                self.web3.loadRequest(request)
+            }
+        })
+        
         self.SetListViews()
         self.SetMiddleSwipeViews()
     }
