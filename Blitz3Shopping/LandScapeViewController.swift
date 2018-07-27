@@ -208,19 +208,19 @@ class LandScapeViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     func SetListViews(){
-        self.leftListView.frame = CGRect(x: self.web1.frame.origin.x + CGFloat(3), y: 70, width: self.web1.frame.size.width - 10 , height: 200)
+        self.leftListView.frame = CGRect(x: self.web1.frame.origin.x + CGFloat(3), y: 60, width: self.web1.frame.size.width - 10 , height: 200)
         self.leftListView.delegate = self
         self.leftListView.dataSource = self
         self.view.addSubview(self.leftListView)
         self.leftListView.isHidden = true
         
-        self.middleListView.frame = CGRect(x: self.web2.frame.origin.x + CGFloat(3), y: 70, width: self.web2.frame.size.width - 10 , height: 200)
+        self.middleListView.frame = CGRect(x: self.web2.frame.origin.x + CGFloat(3), y: 60, width: self.web2.frame.size.width - 10 , height: 200)
         self.middleListView.delegate = self
         self.middleListView.dataSource = self
         self.view.addSubview(self.middleListView)
         self.middleListView.isHidden = true
         
-        self.rightListView.frame = CGRect(x: self.web3.frame.origin.x + CGFloat(3), y: 70, width: self.web3.frame.size.width - 10 , height: 200)
+        self.rightListView.frame = CGRect(x: self.web3.frame.origin.x + CGFloat(3), y: 60, width: self.web3.frame.size.width - 10 , height: 200)
         self.rightListView.delegate = self
         self.rightListView.dataSource = self
         self.view.addSubview(self.rightListView)
