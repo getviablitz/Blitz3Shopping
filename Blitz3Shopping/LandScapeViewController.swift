@@ -58,7 +58,7 @@ class LandScapeViewController: UIViewController, UITableViewDelegate, UITableVie
             width = UIScreen.main.bounds.size.height
             height = UIScreen.main.bounds.size.width
         }
-        self.web1.frame = CGRect(x: height/3 * CGFloat(0), y: 40, width: height/3, height: width - 40)
+        self.web1.frame = CGRect(x: height/3 * CGFloat(0), y: 60, width: height/3, height: width - 60)
         self.view.addSubview(self.web1)
         web1.scrollView.bounces = false
         web1.delegate = self
@@ -67,7 +67,7 @@ class LandScapeViewController: UIViewController, UITableViewDelegate, UITableVie
         web1.isOpaque = false
         web1.scrollView.contentInset = UIEdgeInsets(top: -8, left: -8, bottom: -8, right: -8)
         
-        self.web2.frame = CGRect(x: height/3 * CGFloat(1), y: 40, width: height/3, height: width - 40)
+        self.web2.frame = CGRect(x: height/3 * CGFloat(1), y: 60, width: height/3, height: width - 60)
         self.view.addSubview(self.web2)
         web2.scrollView.bounces = false
         web2.delegate = self
@@ -76,7 +76,7 @@ class LandScapeViewController: UIViewController, UITableViewDelegate, UITableVie
         web2.isOpaque = false
         web2.scrollView.contentInset = UIEdgeInsets(top: -8, left: -8, bottom: -8, right: -8)
         
-        self.web3.frame = CGRect(x: height/3 * CGFloat(2), y: 40, width: height/3, height: width - 40)
+        self.web3.frame = CGRect(x: height/3 * CGFloat(2), y: 60, width: height/3, height: width - 60)
          self.view.addSubview(self.web3)
         web3.scrollView.bounces = false
         web3.delegate = self
@@ -85,15 +85,15 @@ class LandScapeViewController: UIViewController, UITableViewDelegate, UITableVie
         web3.isOpaque = false
         web3.scrollView.contentInset = UIEdgeInsets(top: -8, left: -8, bottom: -8, right: -8)
         
-        self.feedLeftHeaderView.frame = CGRect(x: height/3 * CGFloat(0), y: 0, width: height/3, height: 40)
+        self.feedLeftHeaderView.frame = CGRect(x: height/3 * CGFloat(0), y: 20, width: height/3, height: 40)
         self.view.addSubview(self.feedLeftHeaderView)
         self.feedLeftHeaderView.backgroundColor = UIColor.blue
         
-        self.feedMiddleHeaderView.frame = CGRect(x: height/3 * CGFloat(1), y: 0, width: height/3, height: 40)
+        self.feedMiddleHeaderView.frame = CGRect(x: height/3 * CGFloat(1), y: 20, width: height/3, height: 40)
         self.view.addSubview(self.feedMiddleHeaderView)
         self.feedMiddleHeaderView.backgroundColor = UIColor.orange
         
-        self.feedRightHeaderView.frame = CGRect(x: height/3 * CGFloat(2), y: 0, width: height/3, height: 40)
+        self.feedRightHeaderView.frame = CGRect(x: height/3 * CGFloat(2), y: 20, width: height/3, height: 40)
         self.view.addSubview(self.feedRightHeaderView)
         self.feedRightHeaderView.backgroundColor = UIColor.purple
         // Do any additional setup after loading the view.
@@ -199,6 +199,12 @@ class LandScapeViewController: UIViewController, UITableViewDelegate, UITableVie
             
         } else {
             
+        }
+        UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: true)
+        UIApplication.shared.isStatusBarHidden = false
+        let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
+        if statusBar.responds(to: #selector(setter: UIView.backgroundColor)){
+            statusBar.backgroundColor = UIColor.black
         }
     }
     func SetListViews(){
