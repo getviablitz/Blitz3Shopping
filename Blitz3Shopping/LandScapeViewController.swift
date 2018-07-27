@@ -278,6 +278,9 @@ class LandScapeViewController: UIViewController, UITableViewDelegate, UITableVie
                     self.web3.frame.origin.x =  self.web2.frame.origin.x +  self.web2.frame.size.width
                     
                     self.web1.isHidden = false
+                    if(self.filterfeedleft.isSelected == true){
+                        self.leftListView.isHidden = false
+                    }
                     self.feedLeftHeaderView.frame.size.width = self.feedMiddleHeaderView.frame.size.width - (self.feedMiddleHeaderView.frame.size.width/3)
                     self.feedMiddleHeaderView.frame.size.width = self.feedMiddleHeaderView.frame.size.width - (self.feedMiddleHeaderView.frame.size.width/3)
                     self.feedMiddleHeaderView.frame.origin.x = self.feedLeftHeaderView.frame.origin.x + self.feedLeftHeaderView.frame.size.width
@@ -312,6 +315,9 @@ class LandScapeViewController: UIViewController, UITableViewDelegate, UITableVie
                     
                     self.web1.frame.size.width = 0
                     self.web1.isHidden = true
+                    if(self.filterfeedleft.isSelected == true){
+                        self.leftListView.isHidden = true
+                    }
                     
                     self.feedMiddleHeaderView.frame.size.width = self.feedMiddleHeaderView.frame.size.width + (self.feedMiddleHeaderView.frame.size.width/2)
                     self.feedMiddleHeaderView.frame.origin.x = self.feedLeftHeaderView.frame.origin.x
