@@ -120,9 +120,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }else if(UIDevice.current.orientation == UIDeviceOrientation.landscapeRight){
                 lsmViewControler.orientationLSMId = "left"
             }
-            if(DeviceType.IS_IPAD_MINI){
-                lsmViewControler.fromSubView = "rotation"
-            }
+//            if(DeviceType.IS_IPAD_MINI){
+//                lsmViewControler.fromSubView = "rotation"
+//            }
             lsmViewControler.delegate = self
             lsmViewControler.filterArray = socialMediaIndexes
             self.navigationController?.present(lsmViewControler, animated: true, completion: nil)
