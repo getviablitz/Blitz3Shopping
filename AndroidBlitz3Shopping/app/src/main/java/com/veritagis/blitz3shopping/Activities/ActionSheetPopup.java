@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
@@ -58,7 +59,7 @@ public class ActionSheetPopup extends Dialog implements View.OnClickListener {
         //initCheckBox();
         selectedList.clear();
         ArrayList<ActionSheetGroupItem> mList = getData();
-        for (ActionSheetGroupItem modelNew : mList) {
+       /* for (ActionSheetGroupItem modelNew : mList) {
             if (modelNew.url.equals(PrefUtil.getString(mContext, "socialFeedLeft", mContext.getString(R.string.bestbuy_url)))) {
                 ActionSheetPopup.selectedList.add(modelNew);
             }
@@ -68,7 +69,23 @@ public class ActionSheetPopup extends Dialog implements View.OnClickListener {
             if (modelNew.url.equals(PrefUtil.getString(mContext, "socialFeedRight", mContext.getString(R.string.alibaba_url)))) {
                 ActionSheetPopup.selectedList.add(modelNew);
             }
+        }*/
+
+        String webUrl1 = PrefUtil.getString(mContext, "socialFeedLeft", "");
+        String webUrl2 = PrefUtil.getString(mContext, "socialFeedMiddle", "");
+        String webUrl3 = PrefUtil.getString(mContext, "socialFeedRight", "");
+        for (ActionSheetGroupItem modelNew : mList) {
+            if (!TextUtils.isEmpty(webUrl1) && modelNew.url.equals(webUrl1)) {
+                ActionSheetPopup.selectedList.add(modelNew);
+            }
+            if (!TextUtils.isEmpty(webUrl2) && modelNew.url.equals(webUrl2)) {
+                ActionSheetPopup.selectedList.add(modelNew);
+            }
+            if (!TextUtils.isEmpty(webUrl3) && modelNew.url.equals(webUrl3)) {
+                ActionSheetPopup.selectedList.add(modelNew);
+            }
         }
+
         ActionSheetAdapter actionSheetAdapter = new ActionSheetAdapter(mContext, mList);
         mListView.setAdapter(actionSheetAdapter);
 

@@ -1,15 +1,22 @@
 package com.veritagis.blitz3shopping.Activities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Environment;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.webkit.CookieManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -28,7 +35,13 @@ import com.veritagis.blitz3shopping.Utils.ActionSheetGroupItem;
 import com.veritagis.blitz3shopping.Utils.OnSwipeTouchListener;
 import com.veritagis.blitz3shopping.Utils.UserData;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class LandScapeFeedActivity extends Activity {
     WebViewLandscapePopup webViewLandscapePopup;
@@ -38,17 +51,20 @@ public class LandScapeFeedActivity extends Activity {
     private String from_go;
     private FrameLayout framelayout_twitter;
     private RelativeLayout rl_left, rl_middle, rl_right;
+    private RelativeLayout layoutOne, layoutTwo, layoutThree;
+    private String file_loc = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_land_scape_feed);
-
-
         webview_facebook = findViewById(R.id.webview_facebook);
         webview_twitter = findViewById(R.id.webview_twitter);
         webview_instagram = findViewById(R.id.webview_instagram);
+        layoutOne = findViewById(R.id.idLayoutWebOne);
+        layoutTwo = findViewById(R.id.idLayoutWebTwo);
+        layoutThree = findViewById(R.id.idLayoutWebThree);
 
         webview_facebook.setVerticalScrollBarEnabled(true);
         webview_facebook.setHorizontalScrollBarEnabled(true);
@@ -70,7 +86,7 @@ public class LandScapeFeedActivity extends Activity {
         //   framelayout_twitter = findViewById(R.id.framelayout_twitter);
 
 
-        if (ActionSheetPopup.selectedList != null && ActionSheetPopup.selectedList.size() > 0) {
+        if (ActionSheetPopup.selectedList != null && ActionSheetPopup.selectedList.size() > 0 && ActionSheetPopup.selectedList.size() >= 3) {
             //    for (ActionSheetGroupItem actionSheetGroupItem : ActionSheetPopup.selectedList) { }
             ActionSheetGroupItem actionSheetGroupItem = ActionSheetPopup.selectedList.get(0);
             setWebView(webview_facebook, 1, actionSheetGroupItem.url);
@@ -78,6 +94,24 @@ public class LandScapeFeedActivity extends Activity {
             setWebView(webview_twitter, 2, actionSheetGroupItem2.url);
             ActionSheetGroupItem actionSheetGroupItem3 = ActionSheetPopup.selectedList.get(2);
             setWebView(webview_instagram, 3, actionSheetGroupItem3.url);
+        } else if (ActionSheetPopup.selectedList != null && ActionSheetPopup.selectedList.size() > 0 && ActionSheetPopup.selectedList.size() >= 2) {
+            ActionSheetGroupItem actionSheetGroupItem = ActionSheetPopup.selectedList.get(0);
+            setWebView(webview_facebook, 1, actionSheetGroupItem.url);
+            ActionSheetGroupItem actionSheetGroupItem2 = ActionSheetPopup.selectedList.get(1);
+            // if two selected in middle show google search
+            setWebView(webview_instagram, 3, actionSheetGroupItem2.url);
+
+            setWebView(webview_twitter, 2, getResources().getString(R.string.google_search_url));
+
+        } else if (ActionSheetPopup.selectedList != null && ActionSheetPopup.selectedList.size() > 0 && ActionSheetPopup.selectedList.size() >= 1) {
+            // if one selected show google search in left and youtube search in right
+
+            ActionSheetGroupItem actionSheetGroupItem = ActionSheetPopup.selectedList.get(0);
+            setWebView(webview_facebook, 1, getResources().getString(R.string.google_search_url));
+
+            setWebView(webview_twitter, 2, actionSheetGroupItem.url);
+
+            setWebView(webview_instagram, 3, getResources().getString(R.string.youtube_search_url));
         } else {
             setWebView(webview_facebook, 1, getResources().getString(R.string.bestbuy_url));
             setWebView(webview_twitter, 2, getResources().getString(R.string.amazon_url));
@@ -168,13 +202,149 @@ public class LandScapeFeedActivity extends Activity {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
             } else {
-                UserData.fromWebViewPopup = false;
+               /* UserData.fromWebViewPopup = false;
                 Intent intent = new Intent(LandScapeFeedActivity.this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+                startActivity(intent);*/
+                InputMethodManager imm = (InputMethodManager) getApplicationContext()
+                        .getSystemService(Context.INPUT_METHOD_SERVICE);
+
+                if (imm.isAcceptingText()) {
+                    hideSoftKeyboard(this);
+                    takeFeedScreenShot();
+                    Log.i("shown", "shown");
+                } else {
+                    //hideSoftKeyboard(this);
+                    Log.i("shown_not", "shown_not");
+                    takeFeedScreenShot();
+                }
             }
         }
     }
+
+    public static void hideSoftKeyboard(Activity activity) {
+        InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
+
+    }
+
+    private void takeFeedScreenShot() {
+        Bitmap bitmapLeft = null, bitmapMiddle = null, bitmapRight = null, bitmapFinal = null;
+
+        //method call which will return left feed
+        if (ll_facebook_feed.getVisibility() == View.VISIBLE) {
+            bitmapLeft = screenShotLeft(layoutOne);//flLeft
+            bitmapFinal = addBitmap(bitmapFinal, bitmapLeft);
+        }
+        if (ll_twitter_feed.getVisibility() == View.VISIBLE) {
+            bitmapMiddle = screenShotLeft(layoutTwo);//flMiddle
+            bitmapFinal = addBitmap(bitmapFinal, bitmapMiddle);
+        }
+        if (ll_instagram_feed.getVisibility() == View.VISIBLE) {
+            bitmapRight = screenShotLeft(layoutThree);//flRight
+            bitmapFinal = addBitmap(bitmapFinal, bitmapRight);
+        }
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        bitmapFinal.compress(Bitmap.CompressFormat.JPEG, 100, bytes);//10
+
+        // you can create a new file name "test.jpg" in sdcard folder.
+        file_loc = Environment.getExternalStorageDirectory() + "/recent" + randInt(1, 100000) + ".jpg";
+        File f = new File(file_loc);
+        try {
+            f.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // write the bytes in file
+        FileOutputStream fo = null;
+        try {
+            fo = new FileOutputStream(f);
+        } catch (FileNotFoundException e1) {
+            e1.printStackTrace();
+        }
+        try {
+            assert fo != null;
+            fo.write(bytes.toByteArray());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // remember close de FileOutput
+        try {
+            fo.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        UserData.fromWebViewPopup = false;
+        Intent intent = new Intent(LandScapeFeedActivity.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("isScreenShotCapture", true);
+        intent.putExtra("image_path", file_loc);
+        if (ll_facebook_feed.getVisibility() == View.VISIBLE) {
+            intent.putExtra("web_irl1", webview_facebook.getUrl());
+        }
+        if (ll_twitter_feed.getVisibility() == View.VISIBLE) {
+            intent.putExtra("web_irl2", webview_twitter.getUrl());
+        }
+        if (ll_instagram_feed.getVisibility() == View.VISIBLE) {
+            intent.putExtra("web_irl3", webview_instagram.getUrl());
+        }
+        startActivity(intent);
+
+    }
+
+    int randInt(int min, int max) {
+        Random rand = new Random();
+        return rand.nextInt((max - min) + 1) + min;
+    }
+
+    public Bitmap addBitmap(Bitmap c, Bitmap s) {
+        // can add a 3rd parameter 'String loc' if you want to save the new image - left some code to do that at the bottom
+        Bitmap cs = null;
+        if (c == null) return s;
+        int width, height = 0;
+        if (c.getWidth() > s.getWidth()) {
+            width = c.getWidth() + s.getWidth();
+            height = c.getHeight();
+        } else {
+            width = s.getWidth() + s.getWidth();
+            height = c.getHeight();
+        }
+        cs = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas comboImage = new Canvas(cs);
+        comboImage.drawBitmap(c, 0f, 0f, null);
+        comboImage.drawBitmap(s, c.getWidth(), 0f, null);
+        return cs;
+    }
+
+    private Bitmap screenShotLeft(RelativeLayout fl) {
+        Bitmap left;
+        left = loadBitmapFromView(fl, fl.getWidth(), fl.getHeight());
+        //Bitmap b = loadBitmapFromView(mWebView, mWebView.getWidth(), mWebView.getHeight());
+
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        if (left == null) throw new AssertionError();
+        left.compress(Bitmap.CompressFormat.JPEG, 100, bytes);//10
+        Rect rect = new Rect(0, 80, left.getWidth(), left.getHeight());//it will cut top 80 pix from the bitmap and width is not affected
+        //  Be sure that there is at least 1px to slice.
+        assert (rect.left < rect.right && rect.top < rect.bottom);
+        //  Create our resulting image (150--50),(75--25) = 200x100px
+        Bitmap resultBmp = Bitmap.createBitmap(rect.right - rect.left, rect.bottom - rect.top, Bitmap.Config.ARGB_8888);
+        //  draw source bitmap into resulting image at given position:
+        new Canvas(resultBmp).drawBitmap(left, -rect.left, -rect.top, null);
+        if (resultBmp != null)
+            return resultBmp;
+        else return left;
+    }
+
+    Bitmap loadBitmapFromView(View v, int width, int height) {
+        Bitmap b = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);//Bitmap.Config.ARGB_8888,RGB working,ALPHA not workin
+        Canvas c = new Canvas(b);
+        v.layout(0, 0, v.getLayoutParams().width, v.getLayoutParams().height);
+        v.draw(c);
+        return b;
+    }
+
 
     @Override
     public void onBackPressed() {

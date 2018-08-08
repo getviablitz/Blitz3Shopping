@@ -16,7 +16,7 @@ public class PrefUtil {
 
     static public String getString(Context context, String key, String defaultString) {
         SharedPreferences settings = Prefs.get(context);
-        return settings.getString(key, defaultString);
+        return settings.getString(key, null);
     }
 
     static public synchronized void putInt(Context context, String key,

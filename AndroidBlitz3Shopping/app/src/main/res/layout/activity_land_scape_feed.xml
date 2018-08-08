@@ -47,6 +47,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/idLayoutWebOne"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -99,7 +100,7 @@
 
 
             <RelativeLayout
-                android:id="@+id/framelayout_twitter"
+                android:id="@+id/idLayoutWebTwo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -156,6 +157,8 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/idLayoutWebThree"
+
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 

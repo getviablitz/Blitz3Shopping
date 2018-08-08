@@ -7,4 +7,17 @@
     <string name="walmart_url">https://www.walmart.com/</string>
     <string name="costco_url">https://www.costco.com/</string>
     <string name="nordstrom_url">https://shop.nordstrom.com/</string>
+
+    <string name="google_search_url">https://www.google.com/search?q=</string>
+    <string name="youtube_search_url">https://www.youtube.com/results?search_query=</string>
+    <string name="rationale_location_contacts">Blitz3Shopping needs  Storage permissions.</string>
+    <string name="enter_comment_and_post">Enter comment and post</string>
+    <string name="rationale_gallery">This app needs access to your photo gallery.</string>
+
+    // facebook app_id, key and app name
+    <string name="app_id">260158007910502</string>
+    <string name="fb_login_protocol_scheme">fbf9ca5b5f1d869606e73bacbceca7fb</string>
+    <string name="facebook_app_name">Blitz3Shopping</string>
+    <string name="amazon_link_crop">http://api.getviablitz.com/s3/viablitz/Blitzes/BlitzUploads/tNcFMjPG5Xwu5wX</string>
+    //viablitz/Blitzes/BlitzUploads/tNcFMjPG5Xwu5wX
 </resources>

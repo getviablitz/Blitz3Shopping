@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#95000000">
+
+    <RelativeLayout
+        android:id="@+id/idParentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="18dp"
+        android:background="@drawable/popup_bg">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:orientation="vertical"
+            android:weightSum="7">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/enter_comment_and_post"
+                android:textColor="@color/black"
+                android:textSize="@dimen/title_size"
+                android:textStyle="italic" />
+
+            <ImageView
+                android:id="@+id/idImageFeed"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3" />
+
+            <EditText
+                android:id="@+id/idInputComment"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/dimens_1dp"
+                android:layout_weight="2"
+                android:background="@drawable/bg_round_corners"
+                android:gravity="start"
+                android:hint="your comment"
+                android:padding="10dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_weight="1"
+                android:padding="10dp">
+
+                <ToggleButton
+                    android:id="@+id/idBtnFacebook"
+                    android:layout_width="@dimen/media_icons_width_height"
+                    android:layout_height="@dimen/media_icons_width_height"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/toggle_facebook_button"
+                    android:textOff=""
+                    android:textOn="" />
+
+                <ToggleButton
+                    android:id="@+id/idBtnTwitter"
+                    android:layout_width="@dimen/media_icons_width_height"
+                    android:layout_height="@dimen/media_icons_width_height"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/toggle_twitter_button"
+                    android:textOff=""
+                    android:textOn="" />
+
+
+                <ToggleButton
+                    android:id="@+id/idBtnInstagram"
+                    android:layout_width="@dimen/media_icons_width_height"
+                    android:layout_height="@dimen/media_icons_width_height"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/toggle_instagram_button"
+                    android:textOff=""
+                    android:textOn="" />
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <ImageView
+        android:id="@+id/cancel_btn"
+        android:layout_width="@dimen/popup_close_btn"
+        android:layout_height="@dimen/popup_close_btn"
+        android:layout_above="@+id/idParentContainer"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="-40dp"
+        android:layout_marginEnd="-50dp"
+        android:layout_marginRight="-50dp"
+        android:src="@drawable/close_btn"
+        android:visibility="visible" />
+
+    <ProgressBar
+        android:id="@+id/mProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_centerInParent="true" />
+
+</RelativeLayout>

@@ -41,6 +41,23 @@
         <activity
             android:name=".Activities.WebViewActivity"
             android:configChanges="orientation|screenSize|keyboardHidden" />
+
+        <provider
+            android:name="com.facebook.FacebookContentProvider"
+            android:authorities="com.facebook.app.FacebookContentProvider260158007910502"
+            android:exported="true" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/app_id" />
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationName"
+            android:value="@string/facebook_app_name" />
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="e7fbc4e9e54df6994b0d543fbd7b31755f3726e9" />
+
     </application>
 
 </manifest>
