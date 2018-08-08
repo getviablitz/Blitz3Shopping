@@ -632,6 +632,8 @@ public class LandScapeFeedActivity extends Activity {
         stringArrayList.add("WalMart");
         stringArrayList.add("Costco");
         stringArrayList.add("Nordstorm");
+        stringArrayList.add("<font color='red'>Google Search</font>");
+        stringArrayList.add("<font color='red'>Youtube Search</font>");
         stringArrayList.add("Close");
 
         PopupListAdapter popupListAdapter = new PopupListAdapter(LandScapeFeedActivity.this, stringArrayList, false);
@@ -710,7 +712,29 @@ public class LandScapeFeedActivity extends Activity {
                         popupWindow.dismiss();
                         break;
                     }
-                    case 6: { //close
+                    case 6: { //google search
+                        if (type == 1) {
+                            setWebView(webview_facebook, 1, getResources().getString(R.string.google_search_url));
+                        } else if (type == 2) {
+                            setWebView(webview_twitter, 1, getResources().getString(R.string.google_search_url));
+                        } else if (type == 3) {
+                            setWebView(webview_instagram, 1, getResources().getString(R.string.google_search_url));
+                        }
+                        popupWindow.dismiss();
+                        break;
+                    }
+                    case 7: { //youtube search
+                        if (type == 1) {
+                            setWebView(webview_facebook, 1, getResources().getString(R.string.youtube_search_url));
+                        } else if (type == 2) {
+                            setWebView(webview_twitter, 1, getResources().getString(R.string.youtube_search_url));
+                        } else if (type == 3) {
+                            setWebView(webview_instagram, 1, getResources().getString(R.string.youtube_search_url));
+                        }
+                        popupWindow.dismiss();
+                        break;
+                    }
+                    case 8: { //close
                         popupWindow.dismiss();
                         break;
                     }

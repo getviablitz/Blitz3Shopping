@@ -2,6 +2,7 @@ package com.veritagis.blitz3shopping.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +48,7 @@ public class PopupListAdapter extends BaseAdapter {
         if (convertView == null) convertView = inflater.inflate(R.layout.popup_list_item, null);
         TextView tv = convertView.findViewById(R.id.label);
         View view = convertView.findViewById(R.id.view);
-        tv.setText(data.get(position));
+        tv.setText(Html.fromHtml(data.get(position)));
         if (chat && position == 0) {
           //  tv.setTextColor(activity.getResources().getColor(R.color.red));
         } else {
