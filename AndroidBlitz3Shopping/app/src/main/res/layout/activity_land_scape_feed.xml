@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.LandScapeFeedActivity">
+
+    <LinearLayout
+        android:id="@+id/ll_social_feed"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <LinearLayout
+            android:id="@+id/ll_facebook_feed"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/rl_left"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/top_header_height"
+                android:background="@color/iqcolor">
+
+                <Button
+                    android:id="@+id/menu_left"
+                    android:layout_width="@dimen/top_header_icon_height"
+                    android:layout_height="@dimen/top_header_icon_height"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/menu"
+                    android:onClick="onClick" />
+
+                <Button
+                    android:id="@+id/expand_left"
+                    android:layout_width="@dimen/top_header_icon_height"
+                    android:layout_height="@dimen/top_header_icon_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/expand"
+                    android:onClick="onClick" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <WebView
+                    android:id="@+id/webview_facebook"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:background="@color/black" />
+
+        <LinearLayout
+            android:id="@+id/ll_twitter_feed"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/rl_middle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/top_header_height"
+                android:background="@color/iqcolor">
+
+                <Button
+                    android:id="@+id/menu_middle"
+                    android:layout_width="@dimen/top_header_icon_height"
+                    android:layout_height="@dimen/top_header_icon_height"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/menu"
+                    android:onClick="onClick" />
+
+                <Button
+                    android:id="@+id/expand_middle"
+                    android:layout_width="@dimen/top_header_icon_height"
+                    android:layout_height="@dimen/top_header_icon_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/expand"
+                    android:onClick="onClick" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/framelayout_twitter"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <WebView
+                    android:id="@+id/webview_twitter"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <!--<com.veritagis.blitz3social.Utils.MyWebView-->
+
+                <!--android:id="@+id/webview_twitter"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent" />-->
+            </RelativeLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:background="@color/black" />
+
+        <LinearLayout
+            android:id="@+id/ll_instagram_feed"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/rl_right"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/top_header_height"
+                android:background="@color/iqcolor">
+
+                <Button
+                    android:id="@+id/menu_right"
+                    android:layout_width="@dimen/top_header_icon_height"
+                    android:layout_height="@dimen/top_header_icon_height"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/menu"
+                    android:onClick="onClick" />
+
+                <Button
+                    android:id="@+id/expand_right"
+                    android:layout_width="@dimen/top_header_icon_height"
+                    android:layout_height="@dimen/top_header_icon_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/expand"
+                    android:onClick="onClick" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <WebView
+                    android:id="@+id/webview_instagram"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

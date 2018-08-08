@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Blitz3Shopping</string>
+    <string name="amazon_url">https://www.amazon.com/</string>
+    <string name="alibaba_url">https://www.alibaba.com/</string>
+    <string name="ebay_url">https://www.ebay.com/</string>
+    <string name="bestbuy_url">https://www.bestbuy.com/</string>
+    <string name="walmart_url">https://www.walmart.com/</string>
+    <string name="costco_url">https://www.costco.com/</string>
+    <string name="nordstrom_url">https://shop.nordstrom.com/</string>
+</resources>
