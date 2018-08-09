@@ -59,9 +59,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.fabric.sdk.android.Fabric;
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.AppSettingsDialog;
 import pub.devrel.easypermissions.EasyPermissions;
 
 
+@RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
 public class MainActivity extends Activity implements ConnectivityReceiver.ConnectivityReceiverListener, EasyPermissions.PermissionCallbacks {
     private Button btn_go, btn_menu;
     private RelativeLayout activity_main;
@@ -71,7 +74,11 @@ public class MainActivity extends Activity implements ConnectivityReceiver.Conne
     private Dialog feedShareDialog;
     private String web_irl1, web_irl2, web_irl3, facebook_post_url;
     private ProgressBar mProgressBar;
-
+    private EditText etInputSearch;
+    private ToggleButton toggleSearch;
+    String[] permissionsRequired = new String[]{
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE};
     public static boolean isPackageInstalled(Context c, String targetPackage) {
         PackageManager pm = c.getPackageManager();
         try {
@@ -81,6 +88,7 @@ public class MainActivity extends Activity implements ConnectivityReceiver.Conne
         }
         return true;
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,19 +103,13 @@ public class MainActivity extends Activity implements ConnectivityReceiver.Conne
         btn_menu = findViewById(R.id.btn_menu);
 
         activity_main = findViewById(R.id.activity_main);
+        toggleSearch = findViewById(R.id.idBtnSearch);        etInputSearch = findViewById(R.id.idInputSearchKey);
 
         MyApplication.getInstance().setConnectivityListener(this);
         checkConnection();
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (!hasGalleryPermission()) {
-                EasyPermissions.requestPermissions(
-                        MainActivity.this,
-                        getString(R.string.rationale_gallery),
-                        RC_GALLERY_PERM,
-                        Manifest.permission.READ_EXTERNAL_STORAGE);
-            }
+            accessLocationAndStoragePermissions();
         }
-
         Intent intent = getIntent();
         isScreenShotCapture = intent.getBooleanExtra("isScreenShotCapture", false);
         if (isScreenShotCapture) {
@@ -120,10 +122,7 @@ public class MainActivity extends Activity implements ConnectivityReceiver.Conne
         btn_go.setOnClickListener(new View.OnClickListener() { // go to landscape mode activity
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, LandScapeFeedActivity.class);
-                intent.putExtra("from_go", "from_go");
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+                launchLandscapeScreen();
             }
         });
         btn_menu.setOnClickListener(new View.OnClickListener() {
@@ -133,8 +132,20 @@ public class MainActivity extends Activity implements ConnectivityReceiver.Conne
                 actionSheetPopup.show();
             }
         });
+        toggleSearch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    etInputSearch.setVisibility(View.VISIBLE);
+                } else {
+                    etInputSearch.setText("");
+                    etInputSearch.setVisibility(View.GONE);
+                }
+            }
+        });
 
     }
+
     /**
      * method share image to corresponding social media
      */
@@ -286,6 +297,7 @@ public class MainActivity extends Activity implements ConnectivityReceiver.Conne
         }
 
     }
+
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
@@ -330,10 +342,45 @@ public class MainActivity extends Activity implements ConnectivityReceiver.Conne
             snackbar.show();
         }
     }
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    private boolean hasGalleryPermission() {
-        return EasyPermissions.hasPermissions(this, Manifest.permission.READ_EXTERNAL_STORAGE);
+
+    @AfterPermissionGranted(RC_GALLERY_PERM)
+    public void accessLocationAndStoragePermissions() {
+        if (!hasGalleryPermission()) {
+            EasyPermissions.requestPermissions(
+                    this,
+                    getString(R.string.rationale_location_contacts),
+                    RC_GALLERY_PERM,
+                    permissionsRequired);
+        }
     }
+
+    private boolean hasGalleryPermission() {
+        return EasyPermissions.hasPermissions(MyApplication.getInstance().getApplicationContext(), permissionsRequired);
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
+        //layoutDeniedPermissionLayout.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
+        //layoutDeniedPermissionLayout.setVisibility(View.VISIBLE);
+        if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
+            new AppSettingsDialog.Builder(this).build().show();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        // EasyPermissions handles the request result.
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
 
     private void getURLFromServer(String imageLocation) {
         if (mProgressBar != null) {
@@ -392,6 +439,7 @@ public class MainActivity extends Activity implements ConnectivityReceiver.Conne
 
         return encodeString;
     }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -409,9 +457,7 @@ public class MainActivity extends Activity implements ConnectivityReceiver.Conne
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
                 int orientation = getResources().getConfiguration().orientation;
                 if (Configuration.ORIENTATION_LANDSCAPE == orientation) {
-                    Intent intent = new Intent(MainActivity.this, LandScapeFeedActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
+                    launchLandscapeScreen();
                 }
             }
         }.start();
@@ -426,73 +472,14 @@ public class MainActivity extends Activity implements ConnectivityReceiver.Conne
         showSnack(isConnected);
     }
 
-    @Override
-    public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
 
-    }
-
-    @Override
-    public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
-
-    }
-
-    public void launchLandscapeScreen(){
-        ActionSheetPopup.selectedList.clear();
-        String webUrl1 = PrefUtil.getString(getApplicationContext(), "socialFeedLeft", "");
-        String webUrl2 = PrefUtil.getString(getApplicationContext(), "socialFeedMiddle", "");
-        String webUrl3 = PrefUtil.getString(getApplicationContext(), "socialFeedRight", "");
-        ArrayList<ActionSheetGroupItem> mList=getData();
-        for (ActionSheetGroupItem modelNew : mList) {
-            if (!TextUtils.isEmpty(webUrl1) && modelNew.url.equals(webUrl1)) {
-                ActionSheetPopup.selectedList.add(modelNew);
-            }
-            if (!TextUtils.isEmpty(webUrl2) && modelNew.url.equals(webUrl2)) {
-                ActionSheetPopup.selectedList.add(modelNew);
-            }
-            if (!TextUtils.isEmpty(webUrl3) && modelNew.url.equals(webUrl3)) {
-                ActionSheetPopup.selectedList.add(modelNew);
-            }
-        }
+    public void launchLandscapeScreen() {
+        String searchKey = etInputSearch.getText().toString().trim();
         Intent intent = new Intent(MainActivity.this, LandScapeFeedActivity.class);
+        intent.putExtra("searchKey", searchKey);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
+}
 
-    private ArrayList<ActionSheetGroupItem> getData() {
 
-//        Social
-//        1)Facebook
-//        2)Twitter
-//        3)Insta
-//        4)LinkedIn
-//        5)Google+
-//        6)Quora
-//
-//        E-Commerce
-//        1)Best-Buy
-//        2)Amazon
-//        3)Alibaba
-//        4)Wal-mart
-//        5)costco
-//        6)Nordstorm
-//
-//         NewsChannels
-//        1)Foxnews
-//        2)BBC News
-//        3)CNN News
-//        4)CNBC News
-//        5)Buzz feed
-//        6)Yahoo News
-
-        ArrayList<ActionSheetGroupItem> mList = new ArrayList<>();
-
-        //social
-        mList.add(new ActionSheetGroupItem("Best-Buy", true, getApplicationContext().getString(R.string.bestbuy_url)));
-        mList.add(new ActionSheetGroupItem("Amazon", true, getApplicationContext().getString(R.string.amazon_url)));
-        mList.add(new ActionSheetGroupItem("Alibaba", true, getApplicationContext().getString(R.string.alibaba_url)));
-        mList.add(new ActionSheetGroupItem("WalMart", getApplicationContext().getString(R.string.walmart_url)));
-        mList.add(new ActionSheetGroupItem("Costco", getApplicationContext().getString(R.string.costco_url)));
-        mList.add(new ActionSheetGroupItem("Nordstorm", getApplicationContext().getString(R.string.nordstrom_url)));
-
-        return mList;
-    }}

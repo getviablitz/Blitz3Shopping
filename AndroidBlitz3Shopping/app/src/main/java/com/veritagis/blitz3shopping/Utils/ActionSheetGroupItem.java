@@ -7,6 +7,7 @@ package com.veritagis.blitz3shopping.Utils;
 public class ActionSheetGroupItem {
     public String name;
     public String url;
+    private int position;
 
 //    public boolean check;
 
@@ -24,6 +25,14 @@ public class ActionSheetGroupItem {
         this.name = name;
 //        this.check = check;
         this.url = url;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
     }
 
     public ActionSheetGroupItem() {

@@ -8,6 +8,19 @@
     <string name="costco_url">https://www.costco.com/</string>
     <string name="nordstrom_url">https://shop.nordstrom.com/</string>
 
+
+    <string name="amazon_url_search">https://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Daps&amp;field-keywords=</string>
+
+    <string name="alibaba_url_search">http://www.alibaba.com/trade/search?fsb=y&amp;IndexArea=product_en&amp;CatId=&amp;SearchText=</string>
+
+    <string name="ebay_url_search">https://www.ebay.com/</string>
+    <string name="bestbuy_url_search">https://www.bestbuy.com/site/searchpage.jsp?st=</string>
+    <string name="walmart_url_search">https://www.walmart.com/search/?query=</string>
+
+    <string name="costco_url_search"> https://www.costco.com/CatalogSearch?dept=All&amp;keyword=</string>
+
+    <string name="nordstrom_url_search">https://shop.nordstrom.com/sr?contextualcategoryid=2375500&amp;origin=keywordsearch&amp;keyword=</string>
+
     <string name="google_search_url">https://www.google.com/search?q=</string>
     <string name="youtube_search_url">https://www.youtube.com/results?search_query=</string>
     <string name="rationale_location_contacts">Blitz3Shopping needs  Storage permissions.</string>

@@ -56,6 +56,7 @@ public class WebViewActivity extends Activity {
         }
     }
 
+
     @Override
     public void onBackPressed() {
         //remove call to the super class

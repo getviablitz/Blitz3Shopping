@@ -1,5 +1,6 @@
 package com.veritagis.blitz3shopping.Activities;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +14,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Environment;
+import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -32,18 +36,29 @@ import android.widget.RelativeLayout;
 import com.veritagis.blitz3shopping.Adapter.PopupListAdapter;
 import com.veritagis.blitz3shopping.R;
 import com.veritagis.blitz3shopping.Utils.ActionSheetGroupItem;
+import com.veritagis.blitz3shopping.Utils.MyApplication;
 import com.veritagis.blitz3shopping.Utils.OnSwipeTouchListener;
 import com.veritagis.blitz3shopping.Utils.UserData;
+import com.veritagis.blitz3shopping.app.AppConfig;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
-public class LandScapeFeedActivity extends Activity {
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.AppSettingsDialog;
+import pub.devrel.easypermissions.EasyPermissions;
+
+@RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+public class LandScapeFeedActivity extends Activity implements EasyPermissions.PermissionCallbacks {
     WebViewLandscapePopup webViewLandscapePopup;
     private WebView webview_facebook, webview_twitter, webview_instagram;
     //  private CustomWebView webview_twitter;
@@ -53,6 +68,12 @@ public class LandScapeFeedActivity extends Activity {
     private RelativeLayout rl_left, rl_middle, rl_right;
     private RelativeLayout layoutOne, layoutTwo, layoutThree;
     private String file_loc = "";
+    private static final int RC_GALLERY_PERM = 124;
+    private File snapShotImageFile;
+    String[] permissionsRequired = new String[]{
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE};
+    private String searchKey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,40 +103,70 @@ public class LandScapeFeedActivity extends Activity {
         rl_left = findViewById(R.id.rl_left);
         rl_middle = findViewById(R.id.rl_middle);
         rl_right = findViewById(R.id.rl_right);
-
+        searchKey = getIntent().getStringExtra("searchKey");
         //   framelayout_twitter = findViewById(R.id.framelayout_twitter);
 
 
         if (ActionSheetPopup.selectedList != null && ActionSheetPopup.selectedList.size() > 0 && ActionSheetPopup.selectedList.size() >= 3) {
             //    for (ActionSheetGroupItem actionSheetGroupItem : ActionSheetPopup.selectedList) { }
-            ActionSheetGroupItem actionSheetGroupItem = ActionSheetPopup.selectedList.get(0);
-            setWebView(webview_facebook, 1, actionSheetGroupItem.url);
-            ActionSheetGroupItem actionSheetGroupItem2 = ActionSheetPopup.selectedList.get(1);
-            setWebView(webview_twitter, 2, actionSheetGroupItem2.url);
-            ActionSheetGroupItem actionSheetGroupItem3 = ActionSheetPopup.selectedList.get(2);
-            setWebView(webview_instagram, 3, actionSheetGroupItem3.url);
+            if (TextUtils.isEmpty(searchKey)) {
+                ActionSheetGroupItem actionSheetGroupItem = ActionSheetPopup.selectedList.get(0);
+                setWebView(webview_facebook, 1, actionSheetGroupItem.url);
+                ActionSheetGroupItem actionSheetGroupItem2 = ActionSheetPopup.selectedList.get(1);
+                setWebView(webview_twitter, 2, actionSheetGroupItem2.url);
+                ActionSheetGroupItem actionSheetGroupItem3 = ActionSheetPopup.selectedList.get(2);
+                setWebView(webview_instagram, 3, actionSheetGroupItem3.url);
+            } else {
+                ActionSheetGroupItem actionSheetGroupItem = ActionSheetPopup.selectedList.get(0);
+                setWebView(webview_facebook, 1, AppConfig.searchUrl[actionSheetGroupItem.getPosition()] + searchKey);
+                ActionSheetGroupItem actionSheetGroupItem2 = ActionSheetPopup.selectedList.get(1);
+                setWebView(webview_twitter, 2, AppConfig.searchUrl[actionSheetGroupItem2.getPosition()] + searchKey);
+                ActionSheetGroupItem actionSheetGroupItem3 = ActionSheetPopup.selectedList.get(2);
+                setWebView(webview_instagram, 3, AppConfig.searchUrl[actionSheetGroupItem3.getPosition()] + searchKey);
+            }
+
+
         } else if (ActionSheetPopup.selectedList != null && ActionSheetPopup.selectedList.size() > 0 && ActionSheetPopup.selectedList.size() >= 2) {
+
             ActionSheetGroupItem actionSheetGroupItem = ActionSheetPopup.selectedList.get(0);
-            setWebView(webview_facebook, 1, actionSheetGroupItem.url);
+            if (TextUtils.isEmpty(searchKey)) {
+                setWebView(webview_facebook, 1, actionSheetGroupItem.url);
+            } else {
+                setWebView(webview_facebook, 1, AppConfig.searchUrl[actionSheetGroupItem.getPosition()] + searchKey);
+            }
             ActionSheetGroupItem actionSheetGroupItem2 = ActionSheetPopup.selectedList.get(1);
             // if two selected in middle show google search
-            setWebView(webview_instagram, 3, actionSheetGroupItem2.url);
+            if (TextUtils.isEmpty(searchKey)) {
+                setWebView(webview_instagram, 3, actionSheetGroupItem2.url);
+            } else {
+                setWebView(webview_instagram, 3, AppConfig.searchUrl[actionSheetGroupItem2.getPosition()] + searchKey);
+            }
 
-            setWebView(webview_twitter, 2, getResources().getString(R.string.google_search_url));
+            setWebView(webview_twitter, 2, getResources().getString(R.string.google_search_url) + searchKey);
 
         } else if (ActionSheetPopup.selectedList != null && ActionSheetPopup.selectedList.size() > 0 && ActionSheetPopup.selectedList.size() >= 1) {
             // if one selected show google search in left and youtube search in right
 
             ActionSheetGroupItem actionSheetGroupItem = ActionSheetPopup.selectedList.get(0);
-            setWebView(webview_facebook, 1, getResources().getString(R.string.google_search_url));
+            setWebView(webview_facebook, 1, getResources().getString(R.string.google_search_url) + searchKey);
+            if (TextUtils.isEmpty(searchKey)) {
+                setWebView(webview_twitter, 2, actionSheetGroupItem.url);
+            } else {
+                setWebView(webview_twitter, 2, AppConfig.searchUrl[actionSheetGroupItem.getPosition()] + searchKey);
+            }
+            setWebView(webview_instagram, 3, getResources().getString(R.string.youtube_search_url) + searchKey);
 
-            setWebView(webview_twitter, 2, actionSheetGroupItem.url);
-
-            setWebView(webview_instagram, 3, getResources().getString(R.string.youtube_search_url));
         } else {
-            setWebView(webview_facebook, 1, getResources().getString(R.string.bestbuy_url));
-            setWebView(webview_twitter, 2, getResources().getString(R.string.amazon_url));
-            setWebView(webview_instagram, 3, getResources().getString(R.string.alibaba_url));
+
+            if (TextUtils.isEmpty(searchKey)) {
+                setWebView(webview_facebook, 1, getResources().getString(R.string.bestbuy_url));
+                setWebView(webview_twitter, 2, getResources().getString(R.string.amazon_url));
+                setWebView(webview_instagram, 3, getResources().getString(R.string.alibaba_url));
+            } else {
+                setWebView(webview_facebook, 1, getResources().getString(R.string.bestbuy_url_search) + searchKey);
+                setWebView(webview_twitter, 2, getResources().getString(R.string.amazon_url_search) + searchKey);
+                setWebView(webview_instagram, 3, getResources().getString(R.string.alibaba_url_search) + searchKey);
+            }
 
         }
         if (UserData.fromWebViewPopup) {
@@ -209,14 +260,31 @@ public class LandScapeFeedActivity extends Activity {
                 InputMethodManager imm = (InputMethodManager) getApplicationContext()
                         .getSystemService(Context.INPUT_METHOD_SERVICE);
 
+                assert imm != null;
                 if (imm.isAcceptingText()) {
                     hideSoftKeyboard(this);
-                    takeFeedScreenShot();
+                    if (hasGalleryPermission()) {
+                        takeFeedScreenShot();
+                    } else {
+                        EasyPermissions.requestPermissions(
+                                this,
+                                getString(R.string.rationale_location_contacts),
+                                RC_GALLERY_PERM,
+                                permissionsRequired);
+                    }
                     Log.i("shown", "shown");
                 } else {
                     //hideSoftKeyboard(this);
                     Log.i("shown_not", "shown_not");
-                    takeFeedScreenShot();
+                    if (hasGalleryPermission()) {
+                        takeFeedScreenShot();
+                    } else {
+                        EasyPermissions.requestPermissions(
+                                this,
+                                getString(R.string.rationale_location_contacts),
+                                RC_GALLERY_PERM,
+                                permissionsRequired);
+                    }
                 }
             }
         }
@@ -244,37 +312,24 @@ public class LandScapeFeedActivity extends Activity {
             bitmapRight = screenShotLeft(layoutThree);//flRight
             bitmapFinal = addBitmap(bitmapFinal, bitmapRight);
         }
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        bitmapFinal.compress(Bitmap.CompressFormat.JPEG, 100, bytes);//10
-
-        // you can create a new file name "test.jpg" in sdcard folder.
-        file_loc = Environment.getExternalStorageDirectory() + "/recent" + randInt(1, 100000) + ".jpg";
-        File f = new File(file_loc);
+        File storageDir =
+                getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        String timeStamp =
+                new SimpleDateFormat("yyyyMMdd_HHmmss",
+                        Locale.getDefault()).format(new Date());
+        String imageFileName = "IMG_" + timeStamp + "_.jpg";
         try {
-            f.createNewFile();
-        } catch (IOException e) {
+            snapShotImageFile = new File(storageDir, imageFileName);
+            FileOutputStream out = new FileOutputStream(snapShotImageFile);
+            assert bitmapFinal != null;
+            bitmapFinal.compress(Bitmap.CompressFormat.JPEG, 100, out);
+            out.flush();
+            out.close();
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        // write the bytes in file
-        FileOutputStream fo = null;
-        try {
-            fo = new FileOutputStream(f);
-        } catch (FileNotFoundException e1) {
-            e1.printStackTrace();
-        }
-        try {
-            assert fo != null;
-            fo.write(bytes.toByteArray());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        // remember close de FileOutput
-        try {
-            fo.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        if (snapShotImageFile != null && snapShotImageFile.exists())
+            file_loc = snapShotImageFile.getAbsolutePath();
         UserData.fromWebViewPopup = false;
         Intent intent = new Intent(LandScapeFeedActivity.this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -837,5 +892,41 @@ public class LandScapeFeedActivity extends Activity {
         }
     }
 
+    @AfterPermissionGranted(RC_GALLERY_PERM)
+    public void accessLocationAndStoragePermissions() {
+        if (!hasGalleryPermission()) {
+            EasyPermissions.requestPermissions(
+                    this,
+                    getString(R.string.rationale_location_contacts),
+                    RC_GALLERY_PERM,
+                    permissionsRequired);
+        }
+    }
 
+    private boolean hasGalleryPermission() {
+        return EasyPermissions.hasPermissions(MyApplication.getInstance().getApplicationContext(), permissionsRequired);
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
+        //layoutDeniedPermissionLayout.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
+        //layoutDeniedPermissionLayout.setVisibility(View.VISIBLE);
+        if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
+            new AppSettingsDialog.Builder(this).build().show();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        // EasyPermissions handles the request result.
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
 }

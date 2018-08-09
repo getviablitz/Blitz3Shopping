@@ -67,6 +67,7 @@ public class ActionSheetAdapter extends BaseAdapter {
 
         if (ActionSheetPopup.selectedList.contains(modelNew)) {
             viewHolder.checkbox.setChecked(true);
+            modelNew.setPosition(position);
         } else {
             viewHolder.checkbox.setChecked(false);
         }
